@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  atto-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-02-27T16:48:29.853728Z"
+    description: A Helm chart for Kubernetes
+    digest: d1acaea40c9c795c5fab1221428a49772f46fada1ea9926c85f4c548571d8856
+    name: atto-app
+    type: application
+    urls:
+    - https://attopartners.github.io/helmcharts/atto-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-02-27T16:48:29.852217Z"
