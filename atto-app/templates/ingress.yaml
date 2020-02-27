@@ -1,0 +1,40 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "atto-app.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ include "atto-app.fullname" . }}
+  labels:
+    {{- include "atto-app.labels" . | nindent 4 }}
+    {{- if eq .Values.ingress.certType "cloudflare" }}
+    use-cloudflare-solver: "true"
+    {{- else if eq .Values.ingress.certType "http" }}
+    use-http-solver: "true"
+    {{- end }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+      {{- range .Values.domains }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ $fullName }}-tls
+  rules:
+  {{- range .Values.domains }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+        - backend:
+            serviceName: {{ $fullName }}
+            servicePort: {{ $svcPort }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,17 @@
+{{- $name := .Release.Name -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "atto-app.fullname" . }}
+  labels:
+    {{- include "atto-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "atto-app.selectorLabels" . | nindent 4 }}
