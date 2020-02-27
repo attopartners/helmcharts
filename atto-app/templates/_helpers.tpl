@@ -69,6 +69,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Migration labels
+*/}}
+{{- define "atto-app.migrationLabels" -}}
+helm.sh/chart: {{ include "atto-app.chart" . }}
+{{ include "atto-app.migrationSelectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
 Selector labels
 */}}
 {{- define "atto-app.selectorLabels" -}}
@@ -82,6 +94,13 @@ Sidekiq Selector labels
 {{- define "atto-app.sidekiqSelectorLabels" -}}
 app.kubernetes.io/name: {{ include "atto-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}-sidekiq
+{{- end -}}
+{{/*
+Migration Selector labels
+*/}}
+{{- define "atto-app.migrationSelectorLabels" -}}
+app.kubernetes.io/name: {{ include "atto-app.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}-migration
 {{- end -}}
 
 {{/*

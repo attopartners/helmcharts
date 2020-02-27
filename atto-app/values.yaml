@@ -38,6 +38,9 @@ service:
   type: ClusterIP
   port: 80
 
+migration:
+  enabled: true
+
 sidekiq:
   enabled: false
   replicaCount: 1
