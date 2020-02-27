@@ -16,6 +16,7 @@ spec:
         {{- with .Values.vault }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}        
@@ -26,15 +27,14 @@ spec:
     {{- end }}
       serviceAccountName: {{ include "atto-app.serviceAccountName" . }}
       restartPolicy: Never
-      imagePullPolicy: Always
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.commit }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.commit }}"
           command: ["bundle", "exec", "rake","db:migrate"]
 
           resources:
