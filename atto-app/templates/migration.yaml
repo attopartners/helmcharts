@@ -5,8 +5,10 @@ metadata:
   name: migration
   labels:
     {{- include "atto-app.migrationLabels" . | nindent 4 }}
-    helm.sh/hook: pre-upgrade
-    helm.sh/hook-delete-policy: hook-succeeded
+  annotations:
+    "helm.sh/hook": "pre-upgrade,pre-install"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
+    "helm.sh/hook-weight": "-5"
 spec:
   template:
     metadata:
