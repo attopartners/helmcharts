@@ -41,6 +41,9 @@ service:
 migration:
   enabled: true
 
+vpa:
+  enabled: false
+
 sidekiq:
   enabled: false
   replicaCount: 1
