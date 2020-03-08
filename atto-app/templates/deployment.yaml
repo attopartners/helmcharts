@@ -59,7 +59,7 @@ spec:
               protocol: TCP
           readinessProbe:
             httpGet:
-              path: /_health
+              path: {{ .Values.healthcheck }}
               port: http
             initialDelaySeconds: 20
             timeoutSeconds: 5

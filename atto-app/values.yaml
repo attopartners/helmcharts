@@ -48,6 +48,8 @@ sidekiq:
   enabled: false
   replicaCount: 1
 
+healthcheck: "/_health"
+
 ingress:
   enabled: true
   certType: "cloudflare"
