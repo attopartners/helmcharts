@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: migration
+  name: {{ include "atto-app.migration" . }}
   labels:
     {{- include "atto-app.migrationLabels" . | nindent 4 }}
   annotations:
