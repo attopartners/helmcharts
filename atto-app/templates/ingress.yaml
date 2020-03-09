@@ -22,28 +22,11 @@ metadata:
 
   {{- end }}
 spec:
-{{- if .Values.ingress.tls && .Values.ingress.hosts }}
-  tls:
-  {{- range .Values.ingress.tls }}
-    - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
-      secretName: {{ .secretName }}
-  {{- end }}
-  rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
-      http:
-        paths:
-        {{- range .paths }}
-          - path: {{ . }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-        {{- end }}
-  {{- end }}
-{{- else }}
+{{- if .Values.ingress.spec }}
+  {{- with .Values.ingress.spec }}
+    {{- toYaml . | nindent 4 }}
+  {{- end -}}
+{{ else }}
   tls:
     - hosts:
       {{- range .Values.domains }}
@@ -59,4 +42,5 @@ spec:
             serviceName: {{ $fullName }}
             servicePort: {{ $svcPort }}
   {{- end }}
+{{- end }}
 {{- end }}
