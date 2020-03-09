@@ -25,6 +25,7 @@ spec:
           {{- toYaml . | nindent 8 }}
         {{- end }}
         spec:
+          restartPolicy: "Never"
           containers:
             - name: {{ $root.Chart.Name }}
               imagePullPolicy: Always
