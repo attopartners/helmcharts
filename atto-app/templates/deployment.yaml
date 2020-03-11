@@ -53,9 +53,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.commit }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.image.command }}
+          command: {{ .Values.image.command }}
+          {{- end }}
+          {{- if .Values.image.port }}
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: {{ .Values.image.port }}
               protocol: TCP
           readinessProbe:
             httpGet:
@@ -64,6 +68,7 @@ spec:
             initialDelaySeconds: 20
             timeoutSeconds: 5
             failureThreshold: 10
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

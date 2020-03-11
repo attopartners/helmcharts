@@ -11,6 +11,11 @@ commit: "master"
 image:
   repository: nginx
   pullPolicy: IfNotPresent
+  port: 3000
+  command:
+
+service:
+  enabled: true
 
 imagePullSecrets: []
 nameOverride: ""
