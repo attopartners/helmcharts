@@ -1,6 +1,6 @@
+{{- if .Values.service.enabled -}}
 {{- $name := .Release.Name -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if .Values.service.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -16,4 +16,4 @@ spec:
       name: http
   selector:
     {{- include "atto-app.selectorLabels" . | nindent 4 }}
-{{- end }}
+{{- end -}}

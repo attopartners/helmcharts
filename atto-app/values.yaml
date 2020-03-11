@@ -14,9 +14,6 @@ image:
   port: 3000
   command:
 
-service:
-  enabled: true
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -42,6 +39,7 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  enabled: true
 
 migration:
   enabled: true
