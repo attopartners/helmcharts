@@ -12,12 +12,12 @@ spec:
       template:
         metadata:
           annotations:
-            vault.hashicorp.com/agent-requests-cpu: ""
-            vault.hashicorp.com/agent-requests-mem: ""
-            {{- with $root.Values.vault }}
-              {{- toYaml . | nindent 12 -}}
-            {{- end }}
-            vault.hashicorp.com/agent-pre-populate-only: "true"
+            # vault.hashicorp.com/agent-requests-cpu: ""
+            # vault.hashicorp.com/agent-requests-mem: ""
+            # {{- with $root.Values.vault }}
+            #   {{- toYaml . | nindent 12 -}}
+            # {{- end }}
+            # vault.hashicorp.com/agent-pre-populate-only: "true"
             {{- with $root.Values.annotations }}
               {{- toYaml . | nindent 12 -}}
             {{- end }}  
@@ -33,5 +33,7 @@ spec:
               imagePullPolicy: Always
               image: "{{ $root.Values.image.repository }}:{{ $root.Values.commit }}"
               args: {{ .args }}
+              env:
+                {{- toYaml .Values.env | nindent 16 }}
 ---
 {{- end -}}

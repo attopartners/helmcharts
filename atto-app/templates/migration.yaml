@@ -16,12 +16,12 @@ spec:
       labels:
         {{- include "atto-app.migrationSelectorLabels" . | nindent 8 }}
       annotations:
-        vault.hashicorp.com/agent-requests-cpu: ""
-        vault.hashicorp.com/agent-requests-mem: ""
-        {{- with .Values.vault }}
-          {{- toYaml . | nindent 8 -}}
-        {{- end }}
-        vault.hashicorp.com/agent-pre-populate-only: "true"
+        # vault.hashicorp.com/agent-requests-cpu: ""
+        # vault.hashicorp.com/agent-requests-mem: ""
+        # {{- with .Values.vault }}
+        #   {{- toYaml . | nindent 8 -}}
+        # {{- end }}
+        # vault.hashicorp.com/agent-pre-populate-only: "true"
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}        
@@ -41,7 +41,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           image: "{{ .Values.image.repository }}:{{ .Values.commit }}"
           command: ["bundle", "exec", "rake","db:migrate"]
-
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
 {{- end -}}

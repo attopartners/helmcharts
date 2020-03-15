@@ -20,11 +20,11 @@ spec:
       labels:
         {{- include "atto-app.selectorLabels" . | nindent 8 }}
       annotations:
-        vault.hashicorp.com/agent-requests-cpu: ""
-        vault.hashicorp.com/agent-requests-mem: ""
-        {{- with .Values.vault }}
-          {{- toYaml . | nindent 8 -}}
-        {{- end }}
+        # vault.hashicorp.com/agent-requests-cpu: ""
+        # vault.hashicorp.com/agent-requests-mem: ""
+        # {{- with .Values.vault }}
+        #   {{- toYaml . | nindent 8 -}}
+        # {{- end }}
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}
@@ -71,6 +71,10 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
+            
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

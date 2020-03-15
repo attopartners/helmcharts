@@ -45,6 +45,27 @@ migration:
   enabled: true
 
 jobs: []
+env:
+- name: DB_USER
+  valueFrom:
+    secretKeyRef:
+      name: db
+      key: user
+- name: DB_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: db
+      key: password
+- name: AWS_ACCESS_KEY_ID
+  valueFrom:
+    secretKeyRef:
+      name: aws
+      key: access
+- name: AWS_SECRET_ACCESS_KEY
+  valueFrom:
+    secretKeyRef:
+      name: aws
+      key: secret
 
 vpa:
   enabled: false
