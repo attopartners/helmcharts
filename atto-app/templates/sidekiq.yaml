@@ -21,11 +21,6 @@ spec:
       labels:
         {{- include "atto-app.sidekiqSelectorLabels" . | nindent 8 }}
       annotations:
-        # vault.hashicorp.com/agent-requests-cpu: ""
-        # vault.hashicorp.com/agent-requests-mem: ""
-        # {{- with .Values.vault }}
-        #   {{- toYaml . | nindent 8 -}}
-        # {{- end }}
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}        
