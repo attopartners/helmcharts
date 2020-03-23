@@ -91,7 +91,9 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: 
+resources:
+  requests:
+    memory: 128M
   limits:
     memory: 1G
 
