@@ -29,6 +29,7 @@ spec:
         - {{ . | quote }}
       {{- end }}
       secretName: {{ $fullName }}-tls
+  ingressClassName: nginx
   rules:
   {{- range .Values.domains }}
     - host: {{ . | quote }}
