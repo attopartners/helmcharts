@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   atto-app:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2021-11-14T21:47:40.507295Z"
+    description: A Helm chart for Kubernetes
+    digest: 9bb6f6936f8544d1f19ee104d7fa69886d0d2bee0f5201684d4e9dc0dbd886db
+    name: atto-app
+    type: application
+    urls:
+    - https://attopartners.github.io/helmcharts/charts/atto-app-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 2.0.0
-    created: "2021-11-14T21:44:20.980313Z"
+    created: "2021-11-14T21:47:40.506559Z"
     description: A Helm chart for Kubernetes
     digest: 5200ffcf974b59fe35dadc74010d418ee89af287aead6aee69a8cc72378c79b8
     name: atto-app
@@ -13,7 +23,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-14T21:44:20.9796Z"
+    created: "2021-11-14T21:47:40.505784Z"
     description: A Helm chart for Kubernetes
     digest: 8759f26720d6082696c60519c934758f9e61ee59dfad69ee543cc93fa478d3cf
     name: atto-app
@@ -23,7 +33,7 @@ entries:
     version: 0.1.23
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-14T21:44:20.978881Z"
+    created: "2021-11-14T21:47:40.504922Z"
     description: A Helm chart for Kubernetes
     digest: b783cc6202c092deac39f417430a2d60857e10b405c11892f9ef87e8b00e8e0b
     name: atto-app
@@ -33,7 +43,7 @@ entries:
     version: 0.1.22
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-14T21:44:20.978112Z"
+    created: "2021-11-14T21:47:40.504211Z"
     description: A Helm chart for Kubernetes
     digest: 72589a164e03de166ed63939e0b63b9215a92cfd3da506fd3d41bd2a0532901c
     name: atto-app
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://attopartners.github.io/helmcharts/charts/atto-app-0.1.21.tgz
     version: 0.1.21
-generated: "2021-11-14T21:44:20.977191Z"
+generated: "2021-11-14T21:47:40.503334Z"
