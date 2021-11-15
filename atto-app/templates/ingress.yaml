@@ -18,12 +18,13 @@ metadata:
 
   {{- end }}
 spec:
-  ingressClassName: nginx
 {{- if .Values.ingress.spec }}
+  ingressClassName: nginx
   {{- with .Values.ingress.spec }}
     {{- toYaml . | nindent 4 }}
   {{- end -}}
 {{ else }}
+  ingressClassName: nginx
   tls:
     - hosts:
       {{- range .Values.domains }}
