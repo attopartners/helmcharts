@@ -45,6 +45,7 @@ migration:
   enabled: true
 
 jobs: []
+envFrom: []
 env:
 - name: DB_USER
   valueFrom:
@@ -70,9 +71,13 @@ env:
 vpa:
   enabled: false
 
+deployment:
+  enabled: true
+
 sidekiq:
   enabled: false
   replicaCount: 1
+  command: ["bundle", "exec", "sidekiq"]
 
 healthcheck: "/_health"
 
@@ -100,4 +105,5 @@ affinity: {}
 
 vault: {}
 
-annotations: {}
+annotations:
+  secrets.doppler.com/reload: 'true'
