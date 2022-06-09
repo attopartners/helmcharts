@@ -82,6 +82,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Shoryuken labels
+*/}}
+{{- define "atto-app.shoryukenLabels" -}}
+helm.sh/chart: {{ include "atto-app.chart" . }}
+{{ include "atto-app.shoryukenSelectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
 Migration labels
 */}}
 {{- define "atto-app.migrationLabels" -}}
@@ -108,6 +120,15 @@ Sidekiq Selector labels
 app.kubernetes.io/name: {{ include "atto-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}-sidekiq
 {{- end -}}
+
+{{/*
+Shoryuken Selector labels
+*/}}
+{{- define "atto-app.shoryukenSelectorLabels" -}}
+app.kubernetes.io/name: {{ include "atto-app.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}-shoryuken
+{{- end -}}
+
 {{/*
 Migration Selector labels
 */}}
