@@ -88,7 +88,6 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-production
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
     nginx.ingress.kubernetes.io/configuration-snippet: more_clear_headers "Server";
-    nginx.org/proxy-pass-headers: "HTTP_CF_IPCOUNTRY"
   hosts: []
   tls: []
 
