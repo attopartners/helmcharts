@@ -81,7 +81,6 @@ deployment:
 sidekiq:
   enabled: false
   replicaCount: 1
-  command: ["bundle", "exec", "sidekiq"]
 
 healthcheck: "/_health"
 
