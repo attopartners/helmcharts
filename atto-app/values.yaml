@@ -68,6 +68,9 @@ env:
       name: aws
       key: secret
 
+doppler:
+  enabled: false
+
 vpa:
   enabled: false
 
