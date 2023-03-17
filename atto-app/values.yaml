@@ -77,13 +77,16 @@ vpa:
 shoryuken:
   enabled: false
   replicaCount: 1
+  annotations: {}
 
 deployment:
   enabled: true
+  annotations: {}
 
 sidekiq:
   enabled: false
   replicaCount: 1
+  annotations: {}
 
 healthcheck: "/_health"
 

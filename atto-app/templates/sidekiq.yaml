@@ -23,6 +23,9 @@ spec:
       annotations:
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
+        {{- end }}  
+        {{- with .Values.sideKiq.annotations }}
+          {{- toYaml . | nindent 8 -}}
         {{- end }}        
     spec:
     {{- with .Values.imagePullSecrets }}
