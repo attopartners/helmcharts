@@ -24,7 +24,7 @@ spec:
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}  
-        {{- with .Values.sideKiq.annotations }}
+        {{- with .Values.sidekiq.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}        
     spec:
