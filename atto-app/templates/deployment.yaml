@@ -4,7 +4,10 @@ kind: Deployment
 metadata:
   name: {{ include "atto-app.fullname" . }}
   labels:
-    {{- include "atto-app.labels" . | nindent 4 }}
+    {{- include "atto-app.labels" . | nindent 4 }}      
+    {{- with .Values.deployment.labels }}
+      {{- toYaml . | nindent 4 -}}
+    {{- end }} 
 spec:
   replicas: {{ .Values.replicaCount }}
   minReadySeconds: 5
@@ -24,6 +27,9 @@ spec:
         {{- with .Values.annotations }}
           {{- toYaml . | nindent 8 -}}
         {{- end }}
+        {{- with .Values.deployment.annotations }}
+          {{- toYaml . | nindent 8 -}}
+        {{- end }}  
         
     spec:
     {{- with .Values.imagePullSecrets }}

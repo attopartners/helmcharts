@@ -5,6 +5,9 @@ metadata:
   name: sidekiq
   labels:
     {{- include "atto-app.sidekiqLabels" . | nindent 4 }}
+    {{- with .Values.sidekiq.labels }}
+      {{- toYaml . | nindent 4 -}}
+    {{- end }}
 spec:
   replicas: {{ .Values.sidekiq.replicaCount }}
   minReadySeconds: 5
@@ -43,7 +46,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["bundle", "exec", "sidekiq"]
           resources:
+            {{- if .Values.sidekiq.resources }}
+            {{- toYaml .Values.sidekiq.resources | nindent 12 }}
+            {{- else }}
             {{- toYaml .Values.resources | nindent 12 }}
+            {{- end }}
           env:
             {{- toYaml .Values.env | nindent 12 }}
           envFrom:

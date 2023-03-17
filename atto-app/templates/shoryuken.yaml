@@ -4,7 +4,10 @@ kind: Deployment
 metadata:
   name: shoryuken
   labels:
-    {{- include "atto-app.shoryukenLabels" . | nindent 4 }}
+    {{- include "atto-app.shoryukenLabels" . | nindent 4 }}      
+    {{- with .Values.shoryuken.labels }}
+      {{- toYaml . | nindent 4 -}}
+    {{- end }} 
 spec:
   replicas: {{ .Values.shoryuken.replicaCount }}
   minReadySeconds: 5
@@ -42,7 +45,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.commit }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
+            {{- if .Values.shoryuken.resources }}
+            {{- toYaml .Values.shoryuken.resources | nindent 12 }}
+            {{- else }}
             {{- toYaml .Values.resources | nindent 12 }}
+            {{- end }}
           env:
             {{- toYaml .Values.env | nindent 12 }}
           envFrom:
