@@ -51,6 +51,8 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
             {{- end }}
           env:
+            - name: COMMIT
+              value: {{ .Values.commit }}
             {{- toYaml .Values.env | nindent 12 }}
           envFrom:
             {{- toYaml .Values.envFrom | nindent 12 }}
