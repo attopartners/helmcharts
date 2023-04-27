@@ -11,6 +11,7 @@ metadata:
 spec:
   replicas: {{ .Values.sidekiq.replicaCount }}
   minReadySeconds: 5
+  revisionHistoryLimit: 5
   strategy:
     type: RollingUpdate
     rollingUpdate:
