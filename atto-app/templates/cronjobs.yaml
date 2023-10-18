@@ -29,5 +29,7 @@ spec:
               args: {{ .args }}
               env:
                 {{- toYaml $root.Values.env | nindent 16 }}
+              envFrom:
+                {{- toYaml $root.Values.envFrom | nindent 16 }}
 ---
 {{- end -}}
