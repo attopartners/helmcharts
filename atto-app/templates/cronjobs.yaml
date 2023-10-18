@@ -26,7 +26,8 @@ spec:
             - name: {{ $root.Chart.Name }}
               imagePullPolicy: Always
               image: "{{ $root.Values.image.repository }}:{{ $root.Values.commit }}"
-              args: {{ .args }}
+              args:
+                {{- toYaml .args | indent 16 }}
               env:
                 {{- toYaml $root.Values.env | nindent 16 }}
               envFrom:
