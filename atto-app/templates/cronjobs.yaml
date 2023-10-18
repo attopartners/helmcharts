@@ -27,7 +27,9 @@ spec:
               imagePullPolicy: Always
               image: "{{ $root.Values.image.repository }}:{{ $root.Values.commit }}"
               args:
-                {{- .args | indent 16 }}
+                {{- with .args }}
+                  {{- toYaml . | nindent 16 -}}
+                {{- end }}
               env:
                 {{- toYaml $root.Values.env | nindent 16 }}
               envFrom:
