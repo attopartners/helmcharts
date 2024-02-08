@@ -1,0 +1,38 @@
+{{- if .Values.tunnel.enabled -}}
+{{- $fullName := include "atto-app.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "atto-app.fullname" . }}
+  labels:
+    {{- include "atto-app.labels" . | nindent 4 }}
+  {{- with .Values.tunnel.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  finalizers:
+  - strrl.dev/cloudflare-tunnel-ingress-controller-controlled
+  generation: 1
+spec:
+  ingressClassName: cloudflare-tunnel
+  {{- if .Values.tunnel.spec }}
+  {{- with .Values.tunnel.spec }}
+  {{- toYaml . | nindent 2 }}
+  {{- end -}}
+  {{ else }}
+  rules:
+  {{- range .Values.domains }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ $fullName }}
+              port: 
+                number: {{ $svcPort }}
+  {{- end }}
+  {{- end }}
+{{- end }}
